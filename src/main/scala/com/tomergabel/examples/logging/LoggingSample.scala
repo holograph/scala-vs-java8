@@ -1,4 +1,4 @@
-package com.tomergabel.examples
+package com.tomergabel.examples.logging
 
 import ch.qos.logback.classic.{Level, Logger => LogbackLogger}
 import org.slf4j.{Logger, LoggerFactory}

@@ -1,4 +1,4 @@
-package com.tomergabel.examples
+package com.tomergabel.examples.logging
 
 import org.slf4j.LoggerFactory
 
