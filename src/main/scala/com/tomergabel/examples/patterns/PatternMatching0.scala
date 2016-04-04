@@ -1,20 +1,13 @@
 package com.tomergabel.examples.patterns
 
-import scala.util.Try
 
-/**
-  * Created by tomerga on 04/04/2016.
-  */
 object PatternMatching0 extends App {
 
   case class HttpRequest(method: String,
                          path: String,
-                         params: Map[String, Seq[String]] = Map.empty,
                          headers: Map[String, String] = Map.empty)
 
-  case class HttpResponse(status: Int,
-                          body: Array[Byte],
-                          headers: Map[String, String] = Map.empty)
+  case class HttpResponse(status: Int, body: Array[Byte])
 
   def execute(req: HttpRequest): HttpResponse = {
     // Mock implementation, for example's sake
@@ -22,16 +15,16 @@ object PatternMatching0 extends App {
     val json = """{"response":"ok"}"""
 
     req match {
-      case HttpRequest("GET", "/", _, _) =>
+      case HttpRequest("GET", "/", _) =>
         HttpResponse(200, index.getBytes)
 
-      case HttpRequest("GET", _, _, _) =>
+      case HttpRequest("GET", _, _) =>
         HttpResponse(404, Array.empty)
 
-      case HttpRequest("POST", _, _, headers) if headers.get("Content-type").contains("application/json") =>
+      case HttpRequest("POST", _, headers) if headers.get("Content-type").contains("application/json") =>
         HttpResponse(200, json.getBytes)
 
-      case HttpRequest("POST", _, _, _) =>
+      case HttpRequest("POST", _, _) =>
         HttpResponse(415, Array.empty)
 
       case _ =>
