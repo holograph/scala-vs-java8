@@ -71,23 +71,4 @@ trait BaseSerializers {
         case _ => error(value)
       }
   }
-
-//  implicit def iterableSerializer[T, C <: Iterable[T]](implicit ser: Serializer[T], cbf: CanBuildFrom[Nothing, T, C]) =
-//    new Serializer[C] {
-//
-//    def serialize(value: C): JsonValue =
-//      JsonArray(value.map(ser.serialize).toSeq :_*)
-//
-//    def deserialize(value: JsonValue): Try[C] =
-//      value match {
-//        case JsonArray(elements @ _*) =>
-//          Try {
-//            val builder = cbf.apply
-//            elements.map(ser.deserialize).foreach(builder += _.get)
-//            builder.result()
-//          }
-//
-//        case _ => error(value)
-//      }
-//  }
 }
