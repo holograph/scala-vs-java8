@@ -11,7 +11,8 @@ object AST {
   case object JsonNull extends JsonValue
   case class JsonArray(elements: JsonValue*) extends JsonValue
   case class JsonObject(fields: JsonField*) extends JsonValue {
-    def /(name: String): Option[JsonValue] = fields.find(_.name == name).map(_.value)
+    def get(name: String): Option[JsonValue] = fields.find(_.name == name).map(_.value)
+    def /(name: String): JsonValue = get(name).get
   }
 
   case class JsonField(name: String, value: JsonValue)

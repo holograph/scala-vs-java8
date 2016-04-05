@@ -1,6 +1,6 @@
 package com.tomergabel.examples.json
 
-import scala.util.{Success, Try}
+import scala.util.Try
 
 
 object SerializationExample extends App {
@@ -22,14 +22,11 @@ object SerializationExample extends App {
     def deserialize(value: JsonValue): Try[Person] = {
       value match {
         case obj: JsonObject =>
-          def field[T](name: String)(implicit ser: Serializer[T]): Try[T] =
-            (obj / name).map(fromJSON[T]).getOrElse(error(obj, "Missing field \"" + name + "\""))
-
           for {
-            name <- field[String]("name")
-            surname <- field[String]("surname")
-            address <- field[Seq[String]]("address")
-            age <- field[Int]("age")
+            name <- fromJSON[String](obj / "name")
+            surname <- fromJSON[String](obj / "surname")
+            address <- fromJSON[Seq[String]](obj / "address")
+            age <- fromJSON[Int](obj / "age")
           }
           yield Person(name, surname, address, age)
 
