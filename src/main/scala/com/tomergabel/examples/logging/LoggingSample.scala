@@ -17,7 +17,7 @@ object LoggingSample extends App with Logging {
       case Array(levelStr, limitStr, errorAtStr) => (Level.valueOf(levelStr), limitStr.toInt, Some(errorAtStr.toInt))
 
       case _ =>
-        error(s"Illegal arguments: $args")
+        error(s"Illegal arguments: ${args.mkString("[", ",", "]")}")
         sys.exit(-1)
     }
 
