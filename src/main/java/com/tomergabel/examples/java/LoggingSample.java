@@ -6,11 +6,11 @@ import org.slf4j.LoggerFactory;
 public class LoggingSample implements Logging {
 
     public String getNormalizedName(Person person) {
-        info("getNormalizedName called");
-        debug("Normalizing " + person.toString());
+        info(() -> "getNormalizedName called");
+        debug(() -> "Normalizing " + person.toString());
         String normalizedName =
                 person.getName().toUpperCase().trim();
-        debug("Normalized name is: " + normalizedName);
+        debug(() -> "Normalized name is: " + normalizedName);
         return normalizedName;
     }
 
