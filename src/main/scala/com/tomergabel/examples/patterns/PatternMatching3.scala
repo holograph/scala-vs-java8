@@ -9,15 +9,15 @@ object PatternMatching3 extends App {
 
   object Http {
     def unapply(url: String): Option[(String, String, Boolean)] = url match {
-      case Url("http", host, path) => Some(host, path, false)
-      case Url("https", host, path) => Some(host, path, true)
+      case Url("http", host, path) => Some((host, path, false))
+      case Url("https", host, path) => Some((host, path, true))
       case _ => None
     }
   }
 
   object Ftp {
     def unapply(url: String) = url match {
-      case Url("ftp", host, path) => Some(host, path)
+      case Url("ftp", host, path) => Some((host, path))
       case _ => None
     }
   }

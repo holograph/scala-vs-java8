@@ -5,3 +5,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-json" % "2.5.1"
 )
 
+scalacOptions ++= Seq(
+  "-Xlint:_"
+)
